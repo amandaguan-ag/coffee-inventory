@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function Inventory(props) {
   return (
@@ -15,5 +16,13 @@ function Inventory(props) {
     </React.Fragment>
   );
 }
+
+Inventory.propTypes = {
+  names: PropTypes.string.isRequired,
+  origin: PropTypes.string,
+  price: PropTypes.number,
+  roast: PropTypes.string,
+  remaining: PropTypes.number,
+};
 
 export default Inventory;
