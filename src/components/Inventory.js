@@ -1,17 +1,16 @@
 import React from "react";
 
-function Inventory() {
-  const name = "Thato";
-  const name2 = "Haley";
+function Inventory(props) {
   return (
     <React.Fragment>
-      <h3>3a</h3>
       <h3>
-        {name} and {name2}
+        {props.name} - {props.origin}
       </h3>
       <p>
-        <em>Firebase entries not saving!</em>
+        Price: <em>${props.price}</em>
       </p>
+      <p>Roast: {props.roast}</p>
+      <p>Remaining: {props.remaining} pounds</p>
       <hr />
     </React.Fragment>
   );
