@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types"; //import PropTypes
 import { v4 } from "uuid"; // new code
+import ReusableForm from "./ReusableForm";
 
 function NewInventoryForm(props) {
   // Make sure to add props as a parameter.
@@ -17,14 +18,10 @@ function NewInventoryForm(props) {
   }
   return (
     <React.Fragment>
-      <form onSubmit={handleNewInventoryFormSubmission}>
-        <input type="text" name="name" placeholder="Bean Names" />
-        <input type="text" name="origin" placeholder="Bean Origin" />
-        <input type="text" name="price" placeholder="Bean price" />
-        <input type="text" name="roast" placeholder="Bean rosat" />
-        <input type="text" name="remaining" placeholder="Bean remaining" />
-        <button type="submit">Add</button>
-      </form>
+      <ReusableForm
+        formSubmissionHandler={handleNewInventoryFormSubmission}
+        buttonText="Sumbit"
+      />
     </React.Fragment>
   );
 }
