@@ -71,6 +71,22 @@ class InventoryControl extends React.Component {
     this.setState({ selectedInventory: selectedInventory });
   };
 
+  handleSellingPound = (id) => {
+    const selectedInventory = this.state.mainInventoryList.find(
+      (inventory) => inventory.id === id
+    );
+    if (selectedInventory.remaining > 0) {
+      selectedInventory.remaining -= 1;
+      const updatedMainInventoryList = this.state.mainInventoryList
+        .filter((inventory) => inventory.id !== id)
+        .concat(selectedInventory);
+      this.setState({
+        mainInventoryList: updatedMainInventoryList,
+        selectedInventory: selectedInventory,
+      });
+    }
+  };
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -88,6 +104,7 @@ class InventoryControl extends React.Component {
           inventory={this.state.selectedInventory}
           onClickingDelete={this.handleDeletingInventory}
           onClickingEdit={this.handleEditClick}
+          onSellingPound={this.handleSellingPound} // Pass the method here
         />
       );
       buttonText = "Return to Inventory List";

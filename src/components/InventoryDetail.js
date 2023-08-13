@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function InventoryDetail(props) {
-  const { inventory, onClickingDelete, onClickingEdit } = props;
-
-  // Destructure the inventory object to get the properties
+  const { inventory, onClickingDelete, onClickingEdit, onSellingPound } = props;
   const { name, origin, price, roast, remaining } = inventory;
 
   return (
@@ -18,6 +16,9 @@ function InventoryDetail(props) {
       </p>
       <p>Roast: {roast}</p>
       <p>Remaining: {remaining} pounds</p>
+      <button onClick={() => onSellingPound(inventory.id)}>
+        Sell 1 Pound
+      </button>{" "}
       <button onClick={onClickingEdit}>Update Inventory</button>
       <button onClick={() => onClickingDelete(inventory.id)}>
         Close Inventory
@@ -31,6 +32,7 @@ InventoryDetail.propTypes = {
   inventory: PropTypes.object,
   onClickingDelete: PropTypes.func,
   onClickingEdit: PropTypes.func,
+  onSellingPound: PropTypes.func, // Add new prop type
 };
 
 export default InventoryDetail;
