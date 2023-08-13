@@ -8,13 +8,14 @@ class InventoryControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
     };
+    this.handleClick = this.handleClick.bind(this); //new code here
   }
 
-  handleClick = () => {
+  handleClick() {
     this.setState((prevState) => ({
       formVisibleOnPage: !prevState.formVisibleOnPage,
     }));
-  };
+  }
 
   render() {
     let currentlyVisibleState = null;
