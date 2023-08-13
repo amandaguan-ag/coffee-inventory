@@ -11,7 +11,13 @@ class InventoryControl extends React.Component {
   }
 
   render() {
-    return <React.Fragment></React.Fragment>;
+    let currentlyVisibleState = null;
+    if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = <NewInventoryForm />;
+    } else {
+      currentlyVisibleState = <InventoryList />;
+    }
+    return <React.Fragment>{currentlyVisibleState}</React.Fragment>;
   }
 }
 
