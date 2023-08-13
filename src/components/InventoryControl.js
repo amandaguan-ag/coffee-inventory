@@ -2,6 +2,7 @@ import React from "react";
 import NewInventoryForm from "./NewInventoryForm";
 import InventoryList from "./InventoryList";
 import InventoryDetail from "./InventoryDetail";
+import EditInventoryForm from "./EditInventoryForm";
 
 class InventoryControl extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class InventoryControl extends React.Component {
       formVisibleOnPage: false,
       mainInventoryList: [],
       selectedInventory: null,
+      editing: false, // new code
     };
     this.handleClick = this.handleClick.bind(this); // Bind the method to the class
   }
@@ -19,6 +21,7 @@ class InventoryControl extends React.Component {
       this.setState({
         formVisibleOnPage: false,
         selectedInventory: null,
+        editing: false, // new code
       });
     } else {
       this.setState((prevState) => ({
@@ -33,6 +36,22 @@ class InventoryControl extends React.Component {
     );
     this.setState({
       mainInventoryList: newMainInventoryList,
+      selectedInventory: null,
+    });
+  };
+
+  handleEditClick = () => {
+    console.log("handleEditClick reached!");
+    this.setState({ editing: true });
+  };
+
+  handleEditingInventoryInList = (inventoryToEdit) => {
+    const editedMainInventoryList = this.state.mainInventoryList
+      .filter((inventory) => inventory.id !== this.state.selectedInventory.id)
+      .concat(inventoryToEdit);
+    this.setState({
+      mainInventoryList: editedMainInventoryList,
+      editing: false,
       selectedInventory: null,
     });
   };
@@ -57,32 +76,32 @@ class InventoryControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
 
-  if (this.state.selectedInventory != null) {
-    currentlyVisibleState = (
-      <InventoryDetail
-        inventory={this.state.selectedInventory}
-        onClickingDelete={this.handleDeletingInventory}
-      />
-    );
-    buttonText = "Return to Inventory List";
-  } else if (this.state.formVisibleOnPage) {
-    // This conditional needs to be updated to "else if."
-    currentlyVisibleState = (
-      <NewInventoryForm
-        onNewInventoryCreation={this.handleAddingNewInventoryToList}
-      />
-    );
-    buttonText = "Return to Inventory List";
-  } else {
-    currentlyVisibleState = (
-      <InventoryList
-        inventoryList={this.state.mainInventoryList}
-        onInventorySelection={this.handleChangingSelectedInventory}
-      />
-    );
-    // Because a user will actually be clicking on the inventory in the Inventory component, we will need to pass our new handleChangingSelectedInventory method as a prop.
-    buttonText = "Add Inventory";
-  }
+    if (this.state.editing) {
+      currentlyVisibleState = (
+        <EditInventoryForm
+          inventory={this.state.selectedInventory}
+          onEditInventory={this.handleEditingInventoryInList}
+        />
+      );
+      buttonText = "Return to Inventory List";
+    } else if (this.state.selectedInventory != null) {
+      // This conditional needs to be updated to "else if."
+      currentlyVisibleState = (
+        <NewInventoryForm
+          onNewInventoryCreation={this.handleAddingNewInventoryToList}
+        />
+      );
+      buttonText = "Return to Inventory List";
+    } else {
+      currentlyVisibleState = (
+        <InventoryList
+          inventoryList={this.state.mainInventoryList}
+          onInventorySelection={this.handleChangingSelectedInventory}
+        />
+      );
+      // Because a user will actually be clicking on the inventory in the Inventory component, we will need to pass our new handleChangingSelectedInventory method as a prop.
+      buttonText = "Add Inventory";
+    }
     return (
       <React.Fragment>
         {currentlyVisibleState}
