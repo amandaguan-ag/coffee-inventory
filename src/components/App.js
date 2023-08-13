@@ -1,11 +1,12 @@
 import React from "react";
+import Header from "./Header";
 
 function App() {
   const name = "Thato";
   const name2 = "Haley";
   return (
     <React.Fragment>
-      <h1>Inventory Tracker</h1>
+      <Header />
       <h3>3a</h3>
       <h3>
         {name} and {name2}
@@ -13,7 +14,6 @@ function App() {
       <p>
         <em>Firebase entries not saving!</em>
       </p>
-      {/* This is a JSX comment. */}
       <hr />
     </React.Fragment>
   );
