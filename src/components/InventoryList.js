@@ -14,6 +14,7 @@ function InventoryList(props) {
           price={inventory.price}
           roast={inventory.roast}
           remaining={inventory.remaining}
+          id={inventory.id}
           key={inventory.id}
         />
       ))}

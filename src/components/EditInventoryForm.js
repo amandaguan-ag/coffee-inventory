@@ -20,7 +20,7 @@ function EditInventoryForm(props) {
   return (
     <React.Fragment>
       <ReusableForm
-        formSubmissionHandler={handleEditInventoryFormSubmission} /* new code */
+        formSubmissionHandler={handleEditInventoryFormSubmission}
         buttonText="Update Inventory"
       />
     </React.Fragment>
@@ -28,8 +28,8 @@ function EditInventoryForm(props) {
 }
 
 EditInventoryForm.propTypes = {
-  inventory: PropTypes.object,
   onEditInventory: PropTypes.func,
+  inventory: PropTypes.object,
 };
 
 export default EditInventoryForm;

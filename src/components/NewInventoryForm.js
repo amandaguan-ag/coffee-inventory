@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types"; //import PropTypes
-import { v4 } from "uuid"; // new code
+import { v4 } from "uuid";
+import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
 
 function NewInventoryForm(props) {
-  // Make sure to add props as a parameter.
   function handleNewInventoryFormSubmission(event) {
     event.preventDefault();
     props.onNewInventoryCreation({
@@ -16,17 +15,16 @@ function NewInventoryForm(props) {
       id: v4(),
     });
   }
+
   return (
     <React.Fragment>
       <ReusableForm
         formSubmissionHandler={handleNewInventoryFormSubmission}
-        buttonText="Sumbit"
+        buttonText="Help!"
       />
     </React.Fragment>
   );
 }
-
-// We also need to add PropTypes for our new prop.
 
 NewInventoryForm.propTypes = {
   onNewInventoryCreation: PropTypes.func,

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function InventoryDetail(props) {
-  const { inventory, onClickingDelete } = props; //new code
+  const { inventory, onClickingDelete, onClickingEdit } = props;
 
   return (
     <React.Fragment>
@@ -15,9 +15,8 @@ function InventoryDetail(props) {
       </p>
       <p>Roast: {props.roast}</p>
       <p>Remaining: {props.remaining} pounds</p>
-      <button onClick={props.onClickingEdit}>Update Inventory</button>{" "}
-      {/* new code */}
-      <button onClick={() => props.onClickingDelete(inventory.id)}>
+      <button onClick={onClickingEdit}>Update Inventory</button>
+      <button onClick={() => onClickingDelete(inventory.id)}>
         Close Inventory
       </button>
       <hr />
@@ -28,7 +27,7 @@ function InventoryDetail(props) {
 InventoryDetail.propTypes = {
   inventory: PropTypes.object,
   onClickingDelete: PropTypes.func,
-  onClickingEdit: PropTypes.func, // new code
+  onClickingEdit: PropTypes.func,
 };
 
 export default InventoryDetail;

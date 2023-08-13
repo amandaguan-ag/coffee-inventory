@@ -1,7 +1,11 @@
 import React from "react";
 
 function Header() {
-  return <h1>Inventory Tracker</h1>;
+  return (
+    <React.Fragment>
+      <h1>Coffee Inventory</h1>
+    </React.Fragment>
+  );
 }
 
 export default Header;
