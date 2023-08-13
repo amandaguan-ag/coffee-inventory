@@ -20,7 +20,7 @@ function NewInventoryForm(props) {
     <React.Fragment>
       <ReusableForm
         formSubmissionHandler={handleNewInventoryFormSubmission}
-        buttonText="Help!"
+        buttonText="Sumbit"
       />
     </React.Fragment>
   );
