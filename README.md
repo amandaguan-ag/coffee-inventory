@@ -9,8 +9,6 @@ This project is a coffee bean inventory management system that allows users to v
 ### Component Tree / Diagram
 ![Component Diagram](component.svg)
 
-**[Include the Image or Link to the Component Diagram Here]**
-
 ## Features
 
 - View a list of available coffee beans
