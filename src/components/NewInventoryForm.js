@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { v4 } from "uuid";
 import PropTypes from "prop-types";
 
@@ -25,46 +25,41 @@ function NewInventoryForm(props) {
     // Add more beans as needed
   ];
 
+  const [selectedBean, setSelectedBean] = useState(null);
+
+  function handleBeanSelection(bean) {
+    setSelectedBean(bean);
+  }
+
   function handleNewInventoryFormSubmission(event) {
     event.preventDefault();
-    // Access the values of the input fields
-    const { name, origin, price, roast } = event.target;
-
-    // Create the new inventory object, setting the remaining value to 130 by default
     const newInventory = {
       id: v4(),
-      name: name.value,
-      origin: origin.value,
-      price: parseFloat(price.value),
-      roast: roast.value,
-      remaining: 130, // Default remaining value
+      name: selectedBean.name,
+      origin: selectedBean.origin,
+      price: selectedBean.price,
+      roast: selectedBean.roast,
+      remaining: 130,
     };
-
-    // Call the onNewInventoryCreation prop with the new inventory object
     props.onNewInventoryCreation(newInventory);
   }
 
   return (
     <React.Fragment>
       <h3>Available Coffee Beans:</h3>
-      <ul>
+      <form onSubmit={handleNewInventoryFormSubmission}>
         {availableBeans.map((bean, index) => (
-          <li key={index}>
+          <div key={index}>
+            <input
+              type="radio"
+              name="bean"
+              value={index}
+              onChange={() => handleBeanSelection(bean)}
+            />
             {bean.name} | Origin: {bean.origin} | Price: ${bean.price} | Roast:{" "}
             {bean.roast}
-          </li>
+          </div>
         ))}
-      </ul>
-      <form onSubmit={handleNewInventoryFormSubmission}>
-        <input type="text" name="name" placeholder="Bean Names" required />
-        <input type="text" name="origin" placeholder="Bean Origin" required />
-        <input type="text" name="price" placeholder="Bean Price" required />
-        <input
-          type="text"
-          name="roast"
-          placeholder="Bean Roast (light, medium, or dark)"
-          required
-        />
         <button type="submit">Submit</button>
       </form>
     </React.Fragment>
