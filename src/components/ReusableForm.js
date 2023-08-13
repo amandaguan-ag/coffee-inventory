@@ -7,9 +7,9 @@ function ReusableForm(props) {
       <form onSubmit={props.formSubmissionHandler}>
         <input type="text" name="name" placeholder="Bean Names" />
         <input type="text" name="origin" placeholder="Bean Origin" />
-        <input type="text" name="price" placeholder="Bean price" />
-        <input type="text" name="roast" placeholder="Bean rosat" />
-        <input type="text" name="remaining" placeholder="Bean remaining" />
+        <input type="text" name="price" placeholder="Bean Price" />
+        <input type="text" name="roast" placeholder="Bean Roast" />
+        {/* The "remaining" input field has been removed */}
         <button type="submit">{props.buttonText}</button>
       </form>
     </React.Fragment>

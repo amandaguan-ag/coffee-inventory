@@ -55,9 +55,13 @@ class InventoryControl extends React.Component {
   };
 
   handleAddingNewInventoryToList = (newInventory) => {
-    const newMainInventoryList = this.state.mainInventoryList.concat(newInventory);
+    // Set the remaining property to 130 by default
+    newInventory.remaining = 130;
+
+    const newMainInventoryList =
+      this.state.mainInventoryList.concat(newInventory);
     this.setState({ mainInventoryList: newMainInventoryList });
-    this.setState({ formVisibleOnPage: false });
+    this.setState({ formVisibleOnPage: false }); // Hides the form and returns to the inventory list
   };
 
   handleChangingSelectedInventory = (id) => {
@@ -89,7 +93,9 @@ class InventoryControl extends React.Component {
       buttonText = "Return to Inventory List";
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = (
-        <NewInventoryForm onNewInventoryCreation={this.handleAddingNewInventoryToList} />
+        <NewInventoryForm
+          onNewInventoryCreation={this.handleAddingNewInventoryToList}
+        />
       );
       buttonText = "Return to Inventory List";
     } else {
