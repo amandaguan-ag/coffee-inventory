@@ -8,6 +8,7 @@ class InventoryControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       mainInventoryList: [],
+      selectedInventory: null,
     };
     this.handleClick = this.handleClick.bind(this); // Bind the method to the class
   }
