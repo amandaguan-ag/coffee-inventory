@@ -18,7 +18,7 @@ function Inventory(props) {
 }
 
 Inventory.propTypes = {
-  names: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   origin: PropTypes.string,
   price: PropTypes.number,
   roast: PropTypes.string,

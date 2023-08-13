@@ -1,13 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types"; //import PropTypes
+import { v4 } from "uuid"; // new code
 
-function NewInventoryForm() {
+function NewInventoryForm(props) {
+  // Make sure to add props as a parameter.
   function handleNewInventoryFormSubmission(event) {
     event.preventDefault();
-    console.log(event.target.name.value);
-    console.log(event.target.origin.value);
-    console.log(event.target.price.value);
-    console.log(event.target.roast.value);
-    console.log(event.target.remaining.value);
+    props.onNewInventoryCreation({
+      name: event.target.name.value,
+      origin: event.target.origin.value,
+      price: event.target.price.value,
+      origin: event.target.roast.value,
+      price: event.target.remaining.value,
+      id: v4(),
+    });
   }
   return (
     <React.Fragment>
@@ -22,5 +28,11 @@ function NewInventoryForm() {
     </React.Fragment>
   );
 }
+
+// We also need to add PropTypes for our new prop.
+
+NewInventoryForm.propTypes = {
+  onNewInventoryCreation: PropTypes.func,
+};
 
 export default NewInventoryForm;

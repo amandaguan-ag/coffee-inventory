@@ -7,8 +7,9 @@ class InventoryControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
+      mainInventoryList: [],
     };
-    this.handleClick = this.handleClick.bind(this); //new code here
+    this.handleClick = this.handleClick.bind(this); // Bind the method to the class
   }
 
   handleClick() {
@@ -17,21 +18,35 @@ class InventoryControl extends React.Component {
     }));
   }
 
+  handleAddingNewInventoryToList = (newInventory) => {
+    const newMainInventoryList =
+      this.state.mainInventoryList.concat(newInventory);
+    this.setState({
+      mainInventoryList: newMainInventoryList,
+      formVisibleOnPage: false,
+    });
+  };
+
   render() {
     let currentlyVisibleState = null;
-    let buttonText = null; // new code
+    let buttonText = null;
     if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewInventoryForm />;
-      buttonText = "Return to Inventory List"; // new code
+      currentlyVisibleState = (
+        <NewInventoryForm
+          onNewInventoryCreation={this.handleAddingNewInventoryToList}
+        />
+      ); // Removed extra curly brace
+      buttonText = "Return to Inventory List";
     } else {
-      currentlyVisibleState = <InventoryList />;
-      buttonText = "Add Inventory"; // new code
+      currentlyVisibleState = (
+        <InventoryList inventoryList={this.state.mainInventoryList} />
+      );
+      buttonText = "Add Inventory";
     }
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>{" "}
-        {/* new code */}
+        <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
