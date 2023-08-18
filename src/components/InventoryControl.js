@@ -71,12 +71,12 @@ class InventoryControl extends React.Component {
     this.setState({ selectedInventory: selectedInventory });
   };
 
-  handleSellingPound = (id) => {
+  handleSellingPound = (id, poundsToSell) => {
     const selectedInventory = this.state.mainInventoryList.find(
       (inventory) => inventory.id === id
     );
-    if (selectedInventory.remaining > 0) {
-      selectedInventory.remaining -= 1;
+    if (selectedInventory.remaining >= poundsToSell) {
+      selectedInventory.remaining -= poundsToSell;
       const updatedMainInventoryList = this.state.mainInventoryList
         .filter((inventory) => inventory.id !== id)
         .concat(selectedInventory);

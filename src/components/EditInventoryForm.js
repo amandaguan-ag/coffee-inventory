@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
 
 function EditInventoryForm(props) {
   const { inventory } = props;
 
+  const [formState, setFormState] = useState({
+    name: inventory.name,
+    origin: inventory.origin,
+    price: inventory.price,
+    roast: inventory.roast,
+    remaining: inventory.remaining,
+  });
+
+  function handleFieldChange(event) {
+    const { name, value } = event.target;
+    setFormState((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
   function handleEditInventoryFormSubmission(event) {
     event.preventDefault();
     props.onEditInventory({
-      name: event.target.name.value,
-      origin: event.target.origin.value,
-      price: event.target.price.value,
-      roast: event.target.roast.value,
-      remaining: event.target.remaining.value,
+      ...formState,
       id: inventory.id,
     });
   }
@@ -20,6 +32,8 @@ function EditInventoryForm(props) {
   return (
     <React.Fragment>
       <ReusableForm
+        formState={formState}
+        onFieldChange={handleFieldChange}
         formSubmissionHandler={handleEditInventoryFormSubmission}
         buttonText="Update Inventory"
       />

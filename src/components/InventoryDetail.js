@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 function InventoryDetail(props) {
+  const [poundsToSell, setPoundsToSell] = useState(0);
   const { inventory, onClickingDelete, onClickingEdit, onSellingPound } = props;
   const { name, origin, price, roast, remaining } = inventory;
 
@@ -16,9 +17,14 @@ function InventoryDetail(props) {
       </p>
       <p>Roast: {roast}</p>
       <p>Remaining: {remaining} pounds</p>
-      <button onClick={() => onSellingPound(inventory.id)}>
-        Sell 1 Pound
-      </button>{" "}
+      <input
+        type="number"
+        value={poundsToSell}
+        onChange={(e) => setPoundsToSell(e.target.value)}
+      />
+      <button onClick={() => onSellingPound(inventory.id, poundsToSell)}>
+        Sell {poundsToSell} Pounds
+      </button>
       <button onClick={onClickingEdit}>Update Inventory</button>
       <button onClick={() => onClickingDelete(inventory.id)}>
         Close Inventory
@@ -32,7 +38,7 @@ InventoryDetail.propTypes = {
   inventory: PropTypes.object,
   onClickingDelete: PropTypes.func,
   onClickingEdit: PropTypes.func,
-  onSellingPound: PropTypes.func, // Add new prop type
+  onSellingPound: PropTypes.func,
 };
 
 export default InventoryDetail;

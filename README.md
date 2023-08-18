@@ -21,7 +21,7 @@ This project is a coffee bean inventory management system that allows users to v
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/coffee-bean-inventory.git
+   git clone https://github.com/amandaguan-ag/coffee-inventory
    ```
 
 2. Navigate to the project directory:
