@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/coffee-inventory/static/css/main.157149ab.css",
+    "main.js": "/coffee-inventory/static/js/main.999f5ca5.js",
+    "static/js/651.f4d32d30.chunk.js": "/coffee-inventory/static/js/651.f4d32d30.chunk.js",
+    "index.html": "/coffee-inventory/index.html",
+    "main.157149ab.css.map": "/coffee-inventory/static/css/main.157149ab.css.map",
+    "main.999f5ca5.js.map": "/coffee-inventory/static/js/main.999f5ca5.js.map",
+    "651.f4d32d30.chunk.js.map": "/coffee-inventory/static/js/651.f4d32d30.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.157149ab.css",
+    "static/js/main.999f5ca5.js"
+  ]
+}
