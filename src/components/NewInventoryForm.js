@@ -1,42 +1,43 @@
-import React from "react";
-import { v4 } from "uuid";
 import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 function NewInventoryForm(props) {
-  function handleNewInventoryFormSubmission(event) {
-    event.preventDefault();
-    // Access the values of the input fields
-    const { name, origin, price, roast } = event.target;
+  const [name, setName] = useState("");
+  const [origin, setOrigin] = useState("");
+  const [price, setPrice] = useState("");
+  const [roast, setRoast] = useState("");
+  const [remaining, setRemaining] = useState("");
 
-    // Create the new inventory object, setting the remaining value to 130 by default
-    const newInventory = {
-      id: v4(),
-      name: name.value,
-      origin: origin.value,
-      price: parseFloat(price.value),
-      roast: roast.value,
-      remaining: 130, // Default remaining value
-    };
-
-    // Call the onNewInventoryCreation prop with the new inventory object
-    props.onNewInventoryCreation(newInventory);
-  }
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const newInventory = {
+    name: name,
+    origin: origin,
+    price: price,
+    roast: roast,
+    remaining: remaining,
+  };
+  props.onNewInventoryCreation(newInventory); // Call the prop function with the new inventory object
+  setName("");
+  setOrigin("");
+  setPrice("");
+  setRoast("");
+  setRemaining(""); // Reset the form fields
+};
 
   return (
-    <React.Fragment>
-      <form onSubmit={handleNewInventoryFormSubmission}>
-        <input type="text" name="name" placeholder="Bean Names" required />
-        <input type="text" name="origin" placeholder="Bean Origin" required />
-        <input type="text" name="price" placeholder="Bean Price" required />
-        <input
-          type="text"
-          name="roast"
-          placeholder="Bean Roast (light, medium, or dark)"
-          required
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </React.Fragment>
+    <div className="w3-container" style={{paddingBottom: "32px"}}>
+      <div className="w3-content" style={{maxWidth: "700px"}}>
+        <h5 className="w3-center w3-padding-48"><span className="w3-tag w3-wide">ADD NEW INVENTORY</span></h5>
+        <form onSubmit={handleSubmit}>
+          <p><input className="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name" value={name} onChange={(e) => setName(e.target.value)} /></p>
+          <p><input className="w3-input w3-padding-16 w3-border" type="text" placeholder="Origin" required name="Origin" value={origin} onChange={(e) => setOrigin(e.target.value)} /></p>
+          <p><input className="w3-input w3-padding-16 w3-border" type="number" placeholder="Price" required name="Price" value={price} onChange={(e) => setPrice(e.target.value)} /></p>
+          <p><input className="w3-input w3-padding-16 w3-border" type="text" placeholder="Roast" required name="Roast" value={roast} onChange={(e) => setRoast(e.target.value)} /></p>
+          <p><button className="w3-button w3-black" type="submit">ADD INVENTORY</button></p>
+        </form>
+      </div>
+    </div>
   );
 }
 
